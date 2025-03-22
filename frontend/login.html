@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HealthCare System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Hero Icons (Updated to use CDN that works in browser) -->
+    <link rel="stylesheet" href="https://unpkg.com/@heroicons/react/24/solid/dist/heroicons-solid.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <!-- Font CSS -->
+    <link rel="stylesheet" href="./css/fonts.css">
+    <!-- Theme Script -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center text-2xl font-bold text-indigo-600 dark:text-indigo-400 logo-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                            HealthCare
+                        </a>
+                    </div>
+                    <!-- Navigation Links - Desktop -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="appointments.html" class="nav-link">Appointments</a>
+                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="faq.html" class="nav-link">FAQ</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="doctors.html" class="nav-link">Doctors</a>
+                        <a href="services.html" class="nav-link">Services</a>
+                        <a href="about.html" class="nav-link">About</a>
+                    </div>
+                </div>
+                <!-- Right Side Menu -->
+                <div class="flex items-center">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <!-- Login/Register Buttons -->
+                    <div class="ml-4 flex items-center space-x-2">
+                        <a href="login.html" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 transition-colors duration-200">Login</a>
+                        <a href="register.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Register</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="flex items-center sm:hidden ml-4">
+                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu, show/hide based on menu state -->
+            <div id="mobile-menu" class="sm:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+                    <a href="appointments.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Appointments</a>
+                    <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Blog</a>
+                    <a href="faq.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">FAQ</a>
+                    <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+                    <a href="doctors.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Doctors</a>
+                    <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Services</a>
+                    <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+                </div>
+                <div class="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+                    <div class="px-2 space-y-1">
+                        <a href="login.html" class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-700">Login</a>
+                        <a href="register.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+            <div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+                    Sign in to your account
+                </h2>
+                <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+                    Or
+                    <a href="./register.html" class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                        create a new account
+                    </a>
+                </p>
+            </div>
+            <form id="loginForm" class="mt-8 space-y-6 fade-in">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="email" class="sr-only">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            placeholder="Email">
+                    </div>
+                    <div>
+                        <label for="password" class="sr-only">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userType" class="form-label">Login As</label>
+                    <select id="userType" class="form-input" required>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox"
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                            Forgot your password?
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-500 dark:hover:bg-blue-600">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        Login
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                            Or continue with
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
+                            <span class="sr-only">Sign in with Google</span>
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12.545,12.151L12.545,12.151c0,1.054,0.855,1.909,1.909,1.909h3.536c-0.447,1.563-1.491,2.918-2.918,3.813 c-1.672,1.049-3.812,1.427-5.817,0.913c-2.004-0.514-3.649-1.91-4.536-3.813c-0.887-1.903-0.887-4.106,0-6.009 c0.447-0.959,1.132-1.791,1.99-2.418c0.858-0.627,1.878-0.995,2.928-1.063c1.05-0.068,2.101,0.178,3.026,0.71 c0.925,0.532,1.683,1.314,2.187,2.241c0.514,0.941,0.777,2.004,0.777,3.089v0.627H12.545z M21.818,12.151L21.818,12.151 c0-0.777-0.068-1.554-0.205-2.323c-0.137-0.768-0.342-1.518-0.614-2.241c-0.273-0.723-0.614-1.409-1.009-2.059 c-0.396-0.65-0.85-1.254-1.354-1.791c-0.505-0.537-1.072-1.022-1.682-1.436c-0.609-0.414-1.272-0.759-1.963-1.036 c-0.691-0.277-1.427-0.482-2.173-0.614c-0.746-0.132-1.509-0.196-2.277-0.196c-0.768,0-1.531,0.064-2.277,0.196 c-0.746,0.132-1.482,0.337-2.173,0.614c-0.691,0.277-1.354,0.623-1.963,1.036c-0.609,0.414-1.177,0.899-1.682,1.436 c-0.505,0.537-0.959,1.141-1.354,1.791c-0.396,0.65-0.736,1.336-1.009,2.059c-0.273,0.723-0.478,1.473-0.614,2.241 c-0.137,0.768-0.205,1.545-0.205,2.323c0,0.777,0.068,1.554,0.205,2.323c0.137,0.768,0.342,1.518,0.614,2.241 c0.273,0.723,0.614,1.409,1.009,2.059c0.396,0.65,0.85,1.254,1.354,1.791c0.505,0.537,1.072,1.022,1.682,1.436 c0.609,0.414,1.272,0.759,1.963,1.036c0.691,0.277,1.427,0.482,2.173,0.614c0.746,0.132,1.509,0.196,2.277,0.196 c0.768,0,1.531-0.064,2.277-0.196c0.746-0.132,1.482-0.337,2.173-0.614c0.691-0.277,1.354-0.623,1.963-1.036 c0.609-0.414,1.177-0.899,1.682-1.436c0.505-0.537,0.959-1.141,1.354-1.791c0.396-0.65,0.736-1.336,1.009-2.059 c0.273-0.723,0.478-1.473,0.614-2.241C21.75,13.705,21.818,12.928,21.818,12.151z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
+                            <span class="sr-only">Sign in with Facebook</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987H7v-2.333C10.842 5.073 8.485 3 5.75 3 2.076 3 0 6.885 0 10.548c0 2.929 1.878 5.363 4.676 6.208.645.157 1.322.253 2 .31v3.565h2.333V15h2v-2h2v2h2.333V10h-2.333C16.244 6.842 14.918 5 12.5 5c-2.418 0-4.5 1.575-4.5 3.528 0 2.418 2.082 4.5 4.5 4.5z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="./js/main.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+    </script>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { loginUser } from './js/auth.js';
+
+        const loginForm = document.getElementById('loginForm');
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.id = 'loadingSpinner';
+        loadingSpinner.className = 'hidden';
+        loadingSpinner.innerHTML = '<div class="spinner-border text-blue-600" role="status"><span class="sr-only">Loading...</span></div>';
+        loginForm.appendChild(loadingSpinner);
+
+        // Create error message element if it doesn't exist
+        let errorMessage = document.getElementById('errorMessage');
+        if (!errorMessage) {
+            errorMessage = document.createElement('div');
+            errorMessage.id = 'errorMessage';
+            errorMessage.className = 'hidden text-red-600 text-sm mt-2';
+            loginForm.insertBefore(errorMessage, loginForm.firstChild);
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide any previous error messages
+            errorMessage.classList.add('hidden');
+            errorMessage.textContent = '';
+            
+            // Show loading spinner
+            loadingSpinner.classList.remove('hidden');
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const userType = document.getElementById('userType').value;
+
+            try {
+                const result = await loginUser(email, password);
+                
+                if (result.success) {
+                    // Check if user type matches
+                    if (result.userData && result.userData.userType === userType) {
+                        // Redirect based on user type
+                        if (userType === 'patient') {
+                            window.location.href = 'patient-dashboard.html';
+                        } else if (userType === 'doctor') {
+                            window.location.href = 'doctor-dashboard.html';
+                        } else if (userType === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        }
+                    } else {
+                        // Show error if user type doesn't match
+                        errorMessage.textContent = `Invalid login for ${userType}. Please check your credentials.`;
+                        errorMessage.classList.remove('hidden');
+                    }
+                } else {
+                    // Show error message
+                    let message = 'Invalid email or password';
+                    if (result.error) {
+                        switch (result.error.code) {
+                            case 'auth/invalid-email':
+                                message = 'Invalid email address';
+                                break;
+                            case 'auth/user-disabled':
+                                message = 'This account has been disabled';
+                                break;
+                            case 'auth/user-not-found':
+                                message = 'No account found with this email';
+                                break;
+                            case 'auth/wrong-password':
+                                message = 'Incorrect password';
+                                break;
+                            default:
+                                message = result.error.message;
+                        }
+                    }
+                    errorMessage.textContent = message;
+                    errorMessage.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorMessage.textContent = 'An error occurred during login. Please try again.';
+                errorMessage.classList.remove('hidden');
+            } finally {
+                // Hide loading spinner
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+
+        // Handle forgot password
+        const forgotPasswordLink = document.querySelector('a[href="#"]');
+        if (forgotPasswordLink) {
+            forgotPasswordLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                if (!email) {
+                    errorMessage.textContent = 'Please enter your email address first';
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+                
+                try {
+                    // Import resetPassword only when needed
+                    const { resetPassword } = await import('./js/auth.js');
+                    const result = await resetPassword(email);
+                    
+                    if (result.success) {
+                        alert('Password reset email sent. Please check your inbox.');
+                    } else {
+                        errorMessage.textContent = result.error?.message || 'Failed to send reset email';
+                        errorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Password reset error:', error);
+                    errorMessage.textContent = 'An error occurred. Please try again.';
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+        }
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // If set via local storage previously
+            if (localStorage.getItem('theme')) {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

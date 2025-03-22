@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HealthCare System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Hero Icons (Updated to use CDN that works in browser) -->
+    <link rel="stylesheet" href="https://unpkg.com/@heroicons/react/24/solid/dist/heroicons-solid.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <!-- Font CSS -->
+    <link rel="stylesheet" href="./css/fonts.css">
+    <!-- Theme Script -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center text-2xl font-bold text-indigo-600 dark:text-indigo-400 logo-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                            HealthCare
+                        </a>
+                    </div>
+                    <!-- Navigation Links - Desktop -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="appointments.html" class="nav-link">Appointments</a>
+                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="faq.html" class="nav-link">FAQ</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="doctors.html" class="nav-link">Doctors</a>
+                        <a href="services.html" class="nav-link">Services</a>
+                        <a href="about.html" class="nav-link">About</a>
+                    </div>
+                </div>
+                <!-- Right Side Menu -->
+                <div class="flex items-center">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <!-- Login/Register Buttons -->
+                    <div class="ml-4 flex items-center space-x-2">
+                        <a href="login.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Login</a>
+                        <a href="register.html" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-700">Register</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="flex items-center sm:hidden ml-4">
+                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu, show/hide based on menu state -->
+            <div id="mobile-menu" class="sm:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+                    <a href="appointments.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Appointments</a>
+                    <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Blog</a>
+                    <a href="faq.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">FAQ</a>
+                    <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+                    <a href="doctors.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Doctors</a>
+                    <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Services</a>
+                    <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+                </div>
+                <div class="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+                    <div class="px-2 space-y-1">
+                        <a href="login.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Login</a>
+                        <a href="register.html" class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 dark:text-indigo-400 bg-gray-50 dark:bg-gray-700">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form -->
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+            <div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+                    Create your account
+                </h2>
+                <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+                    Or
+                    <a href="./login.html" class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                        sign in to your existing account
+                    </a>
+                </p>
+            </div>
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                </div>
+                <div>
+                    <label for="userType" class="block text-sm font-medium text-gray-700">Register As</label>
+                    <select id="userType" name="userType" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+                </div>
+                <!-- Doctor-specific fields -->
+                <div id="doctorFields" style="display: none;">
+                    <div>
+                        <label for="specialization" class="block text-sm font-medium text-gray-700">Specialization</label>
+                        <input type="text" id="specialization" name="specialization" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+                    <div>
+                        <label for="experience" class="block text-sm font-medium text-gray-700">Years of Experience</label>
+                        <input type="number" id="experience" name="experience" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" min="0">
+                    </div>
+                    <div>
+                        <label for="license" class="block text-sm font-medium text-gray-700">Medical License Number</label>
+                        <input type="text" id="license" name="license" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+                </div>
+                <button type="submit" id="submitBtn" class="w-full bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600">Register</button>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                            Or continue with
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
+                            <span class="sr-only">Sign up with Google</span>
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12.545,12.151L12.545,12.151c0,1.054,0.855,1.909,1.909,1.909h3.536c-0.447,1.563-1.491,2.918-2.918,3.813 c-1.672,1.049-3.812,1.427-5.817,0.913c-2.004-0.514-3.649-1.91-4.536-3.813c-0.887-1.903-0.887-4.106,0-6.009 c0.447-0.959,1.132-1.791,1.99-2.418c0.858-0.627,1.878-0.995,2.928-1.063c1.05-0.068,2.101,0.178,3.026,0.71 c0.925,0.532,1.683,1.314,2.187,2.241c0.514,0.941,0.777,2.004,0.777,3.089v0.627H12.545z M21.818,12.151L21.818,12.151 c0-0.777-0.068-1.554-0.205-2.323c-0.137-0.768-0.342-1.518-0.614-2.241c-0.273-0.723-0.614-1.409-1.009-2.059 c-0.396-0.65-0.85-1.254-1.354-1.791c-0.505-0.537-1.072-1.022-1.682-1.436c-0.609-0.414-1.272-0.759-1.963-1.036 c-0.691-0.277-1.427-0.482-2.173-0.614c-0.746-0.132-1.509-0.196-2.277-0.196c-0.768,0-1.531,0.064-2.277,0.196 c-0.746,0.132-1.482,0.337-2.173,0.614c-0.691,0.277-1.354,0.623-1.963,1.036c-0.609,0.414-1.177,0.899-1.682,1.436 c-0.505,0.537-0.959,1.141-1.354,1.791c-0.396,0.65-0.736,1.336-1.009,2.059c-0.273,0.723-0.478,1.473-0.614,2.241 c-0.137,0.768-0.205,1.545-0.205,2.323c0,0.777,0.068,1.554,0.205,2.323c0.137,0.768,0.342,1.518,0.614,2.241 c0.273,0.723,0.614,1.409,1.009,2.059c0.396,0.65,0.85,1.254,1.354,1.791c0.505,0.537,1.072,1.022,1.682,1.436 c0.609,0.414,1.272,0.759,1.963,1.036c0.691,0.277,1.427,0.482,2.173,0.614c0.746,0.132,1.509,0.196,2.277,0.196 c0.768,0,1.531-0.064,2.277-0.196c0.746-0.132,1.482-0.337,2.173-0.614c0.691-0.277,1.354-0.623,1.963-1.036 c0.609-0.414,1.177-0.899,1.682-1.436c0.505-0.537,0.959-1.141,1.354-1.791c0.396-0.65,0.736-1.336,1.009-2.059 c0.273-0.723,0.478-1.473,0.614-2.241C21.75,13.705,21.818,12.928,21.818,12.151z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="#"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600">
+                            <span class="sr-only">Sign up with Facebook</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.078v-2.815A9.006 9.006 0 006.75 10c0 2.907 1.938 5.426 4.5 5.426.942 0 1.797-.144 2.5-.436v2.815h1.978V10h2.5a.5.5 0 01.5.53v2.907a.5.5 0 01-.5.53z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="./js/main.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // If set via local storage previously
+            if (localStorage.getItem('theme')) {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+        });
+
+        // Form validation
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Password validation
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                userType: document.getElementById('userType').value,
+                specialization: document.getElementById('specialization').value,
+                experience: document.getElementById('experience').value,
+                license: document.getElementById('license').value
+            };
+            
+            try {
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('submitBtn').innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+                
+                const response = await fetch('http://localhost:5003/api/patients/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('Registration successful!');
+                    window.location.href = './login.html'; // Redirect to login page
+                } else {
+                    alert('Registration failed: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Registration failed: ' + error.message);
+            } finally {
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerHTML = 'Register';
+            }
+        });
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                confirmPasswordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+                confirmPasswordInput.type = 'password';
+            }
+        }
+    </script>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { registerUser } from './js/auth.js';
+
+        const registerForm = document.getElementById('registerForm');
+        const doctorFields = document.getElementById('doctorFields');
+        const userTypeSelect = document.getElementById('userType');
+        
+        // Create error message element
+        const errorMessage = document.createElement('div');
+        errorMessage.id = 'errorMessage';
+        errorMessage.className = 'hidden text-red-600 text-sm mt-2';
+        registerForm.insertBefore(errorMessage, registerForm.firstChild);
+        
+        // Create loading spinner
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.id = 'loadingSpinner';
+        loadingSpinner.className = 'hidden fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50';
+        loadingSpinner.innerHTML = '<div class="spinner-border text-white" role="status"><span class="sr-only">Loading...</span></div>';
+        document.body.appendChild(loadingSpinner);
+
+        // Show/hide doctor fields based on user type
+        userTypeSelect.addEventListener('change', function() {
+            if (this.value === 'doctor') {
+                doctorFields.style.display = 'block';
+                // Make doctor fields required
+                document.getElementById('specialization').required = true;
+                document.getElementById('experience').required = true;
+                document.getElementById('license').required = true;
+            } else {
+                doctorFields.style.display = 'none';
+                // Make doctor fields not required
+                document.getElementById('specialization').required = false;
+                document.getElementById('experience').required = false;
+                document.getElementById('license').required = false;
+            }
+        });
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide any previous error messages
+            errorMessage.classList.add('hidden');
+            errorMessage.textContent = '';
+            
+            // Show loading spinner
+            loadingSpinner.classList.remove('hidden');
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const userType = document.getElementById('userType').value;
+            
+            // Validate password match
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match';
+                errorMessage.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+                return;
+            }
+            
+            // Validate password strength
+            if (password.length < 6) {
+                errorMessage.textContent = 'Password must be at least 6 characters long';
+                errorMessage.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+                return;
+            }
+            
+            // Collect user data based on user type
+            const userData = {
+                name,
+                userType
+            };
+            
+            // Add doctor-specific data if applicable
+            if (userType === 'doctor') {
+                userData.specialization = document.getElementById('specialization').value;
+                userData.experience = document.getElementById('experience').value;
+                userData.license = document.getElementById('license').value;
+                userData.isApproved = false; // New doctors need approval
+            }
+            
+            try {
+                const result = await registerUser(email, password, userData);
+                
+                if (result.success) {
+                    // Show success message
+                    alert('Registration successful! You can now login.');
+                    
+                    // Redirect to login page
+                    window.location.href = 'login.html';
+                } else {
+                    // Handle specific error cases
+                    let message = 'Registration failed';
+                    if (result.error) {
+                        switch (result.error.code) {
+                            case 'auth/email-already-in-use':
+                                message = 'This email is already registered';
+                                break;
+                            case 'auth/invalid-email':
+                                message = 'Invalid email address';
+                                break;
+                            case 'auth/weak-password':
+                                message = 'Password is too weak';
+                                break;
+                            default:
+                                message = result.error.message;
+                        }
+                    }
+                    errorMessage.textContent = message;
+                    errorMessage.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                errorMessage.textContent = 'An error occurred during registration. Please try again.';
+                errorMessage.classList.remove('hidden');
+            } finally {
+                // Hide loading spinner
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

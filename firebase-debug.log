@@ -1,0 +1,21 @@
+[debug] [2025-03-21T19:21:39.925Z] ----------------------------------------------------------------------
+[debug] [2025-03-21T19:21:39.938Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mulan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-03-21T19:21:39.939Z] CLI Version:   13.35.1
+[debug] [2025-03-21T19:21:39.939Z] Platform:      win32
+[debug] [2025-03-21T19:21:39.939Z] Node Version:  v22.14.0
+[debug] [2025-03-21T19:21:39.940Z] Time:          Sat Mar 22 2025 00:51:39 GMT+0530 (India Standard Time)
+[debug] [2025-03-21T19:21:39.940Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-21T19:21:39.952Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-21T19:21:39.953Z] > authorizing via signed-in user (dhruv137iitram@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\mulan\OneDrive - IITRAM\Desktop\hackathon
+

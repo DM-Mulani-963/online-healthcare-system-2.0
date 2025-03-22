@@ -1,0 +1,109 @@
+rules_version = '2';
+// This file was updated to implement proper access control for all collections
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    
+    function isDoctor() {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/doctors/$(request.auth.uid));
+    }
+    
+    function isPatient() {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/patients/$(request.auth.uid));
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Patients collection
+    match /patients/{patientId} {
+      allow read: if isAuthenticated() && (isOwner(patientId) || isDoctor() || isAdmin());
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(patientId) || isAdmin();
+    }
+
+    // Doctors collection
+    match /doctors/{doctorId} {
+      allow read: if isAuthenticated();
+      allow create: if isAdmin();
+      allow update: if isOwner(doctorId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Appointments collection
+    match /appointments/{appointmentId} {
+      allow read: if isAuthenticated() && (
+        resource.data.patient_id == request.auth.uid || 
+        resource.data.doctor_id == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && (
+        resource.data.patient_id == request.auth.uid || 
+        resource.data.doctor_id == request.auth.uid ||
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+
+    // Medical reports collection
+    match /medical_reports/{reportId} {
+      allow read: if isAuthenticated() && (
+        resource.data.patient_id == request.auth.uid || 
+        resource.data.doctor_id == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isDoctor() || isAdmin();
+      allow update: if isDoctor() && resource.data.doctor_id == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    // Prescriptions collection
+    match /prescriptions/{prescriptionId} {
+      allow read: if isAuthenticated() && (
+        resource.data.patient_id == request.auth.uid || 
+        resource.data.doctor_id == request.auth.uid ||
+        isAdmin()
+      );
+      allow create: if isDoctor() || isAdmin();
+      allow update: if isDoctor() && resource.data.doctor_id == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    // Payments collection
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated() && (
+        resource.data.patient_id == request.auth.uid || 
+        isAdmin()
+      );
+      allow create: if isAuthenticated();
+      allow update, delete: if isAdmin();
+    }
+
+    // Admins collection
+    match /admins/{adminId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Feedback collection
+    match /feedback/{feedbackId} {
+      allow read: if isAuthenticated();
+      allow create: if isPatient();
+      allow update: if isOwner(resource.data.patient_id);
+      allow delete: if isAdmin();
+    }
+  }
+}

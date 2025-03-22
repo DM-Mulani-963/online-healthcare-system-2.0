@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - HealthCare System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Font CSS -->
+    <link rel="stylesheet" href="css/fonts.css">
+    <!-- Theme Script -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="flex items-center text-2xl font-bold text-indigo-600 dark:text-indigo-400 logo-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                            </svg>
+                            HealthCare
+                        </a>
+                    </div>
+                    <!-- Navigation Links - Desktop -->
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="appointments.html" class="nav-link">Appointments</a>
+                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="faq.html" class="nav-link">FAQ</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="doctors.html" class="nav-link">Doctors</a>
+                        <a href="services.html" class="nav-link">Services</a>
+                        <a href="about.html" class="nav-link">About</a>
+                    </div>
+                </div>
+                <!-- Right Side Menu -->
+                <div class="flex items-center">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <!-- Login/Register Buttons -->
+                    <div class="ml-4 flex items-center space-x-2">
+                        <a href="login.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Login</a>
+                        <a href="register.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Register</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="flex items-center sm:hidden ml-4">
+                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu, show/hide based on menu state -->
+            <div id="mobile-menu" class="sm:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+                    <a href="appointments.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Appointments</a>
+                    <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Blog</a>
+                    <a href="faq.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">FAQ</a>
+                    <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+                    <a href="doctors.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Doctors</a>
+                    <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Services</a>
+                    <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">About</a>
+                </div>
+                <div class="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+                    <div class="px-2 space-y-1">
+                        <a href="login.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Login</a>
+                        <a href="register.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <div class="relative bg-white dark:bg-gray-800 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl" data-aos="fade-up">
+                        Patient Testimonials
+                    </h1>
+                    <p class="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl" data-aos="fade-up" data-aos-delay="100">
+                        Hear what our patients have to say about their experiences with our healthcare services.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Testimonials -->
+        <section class="py-12 bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white" data-aos="fade-up">Featured Stories</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="100">Real experiences from real patients</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="text-yellow-400 flex">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600 dark:text-gray-400">5.0</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                                "I was amazed by the level of care I received at HealthCare. The doctors were attentive, knowledgeable, and took the time to explain everything to me. The online appointment booking system was so convenient, and I was able to get an appointment quickly."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-white">Sarah Johnson</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Patient since 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="text-yellow-400 flex">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600 dark:text-gray-400">4.5</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                                "The telehealth service provided by HealthCare was a lifesaver during the pandemic. I was able to consult with my doctor from the comfort of my home. The video quality was excellent, and the doctor was just as thorough as during an in-person visit."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Thompson" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-white">Michael Thompson</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Patient since 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="text-yellow-400 flex">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600 dark:text-gray-400">5.0</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                                "I've been managing my chronic condition with the help of HealthCare for over three years now. The continuity of care has been exceptional. My medical records are always up-to-date and accessible to all my healthcare providers, which ensures coordinated care."
+                            </p>
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 dark:text-white">Emily Rodriguez</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Patient since 2020</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Testimonials -->
+        <section class="py-12 bg-white dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white" data-aos="fade-up">Video Testimonials</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="100">Watch our patients share their healthcare journeys</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Video 1 -->
+                    <div class="rounded-lg overflow-hidden shadow-lg" data-aos="fade-up">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700">
+                            <div class="flex items-center justify-center h-full">
+                                <div class="text-center p-6">
+                                    <i class="fas fa-video text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                                    <p class="text-gray-600 dark:text-gray-400">Video testimonial placeholder</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">John's recovery story</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-gray-800">
+                            <h3 class="font-medium text-lg text-gray-900 dark:text-white">John's Recovery Journey</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1">After a serious accident, John shares how our rehabilitation program helped him regain mobility.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700">
+                            <div class="flex items-center justify-center h-full">
+                                <div class="text-center p-6">
+                                    <i class="fas fa-video text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                                    <p class="text-gray-600 dark:text-gray-400">Video testimonial placeholder</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">Lisa's experience with telehealth</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-gray-800">
+                            <h3 class="font-medium text-lg text-gray-900 dark:text-white">Lisa's Telehealth Experience</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1">Lisa discusses how telehealth services made healthcare accessible during her pregnancy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Testimonials -->
+        <section class="py-12 bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white" data-aos="fade-up">More Patient Stories</h2>
+                    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="100">Read more about our patients' experiences</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonial 4 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600 dark:text-gray-400">5.0</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                            "The pediatric care at HealthCare is outstanding. The doctors and nurses are so patient and gentle with my children. They make what could be a scary experience for kids into something comfortable and even fun. My children actually look forward to their check-ups!"
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/54.jpg" alt="Jennifer Williams" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-medium text-gray-900 dark:text-white">Jennifer Williams</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Parent of two patients</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 5 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600 dark:text-gray-400">4.0</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                            "As a senior citizen, I appreciate how the staff at HealthCare takes extra time to explain things clearly. They never rush me and always make sure I understand my treatment plan. The online portal is also surprisingly easy to use, even for someone who isn't tech-savvy."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Robert Chen" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-medium text-gray-900 dark:text-white">Robert Chen</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Patient since 2019</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 6 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600 dark:text-gray-400">4.5</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                            "I had emergency surgery at HealthCare, and I was impressed by how quickly and efficiently everything was handled. From the moment I arrived at the emergency room to my discharge, the care was exceptional. The follow-up care has also been great."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Patel" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-medium text-gray-900 dark:text-white">David Patel</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Emergency patient</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 7 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <div class="text-yellow-400 flex">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600 dark:text-gray-400">5.0</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 italic mb-6">
+                            "The mental health services at HealthCare have been transformative for me. The therapists are compassionate and skilled. I appreciate the holistic approach they take, considering both my mental and physical well-being."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Sophia Kim" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-medium text-gray-900 dark:text-white">Sophia Kim</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Mental health patient</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Share Your Story -->
+        <section class="py-12 bg-blue-600 dark:bg-blue-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-6" data-aos="fade-up">Share Your Story</h2>
+                <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    We'd love to hear about your experience with HealthCare. Your story could inspire others on their healthcare journey.
+                </p>
+                <a href="contact.html" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-50 transition-colors duration-200" data-aos="fade-up" data-aos-delay="200">
+                    Submit Your Testimonial
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4">HealthCare</h4>
+                    <p class="text-gray-500 dark:text-gray-400">Making healthcare accessible to everyone.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Services</a></li>
+                        <li><a href="doctors.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Doctors</a></li>
+                        <li><a href="faq.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">FAQ</a></li>
+                        <li><a href="testimonials.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Testimonials</a></li>
+                        <li><a href="contact.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-200 dark:border-gray-700 pt-8 text-center">
+                <p class="text-gray-500 dark:text-gray-400">&copy; 2025 HealthCare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // If set via local storage previously
+            if (localStorage.getItem('theme')) {
+                if (localStorage.getItem('theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
